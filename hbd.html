@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)file:///C:/Users/User/Downloads/HBD.html -->
+<html lang="th"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: radial-gradient(circle at center, #fff0f6, #ffd6e7, #ffb6c1);
+    font-family: 'Comic Sans MS', cursive;
+    color: #c2185b;
+    text-align: center;
+    perspective: 1000px;
+  }
+
+  /* Overlay รหัสผ่าน */
+  #passwordOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ffd6e7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #passwordOverlay video {
+    width: 80vw;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #ff99cc;
+    margin-bottom: 20px;
+  }
+  #passwordOverlay input {
+    font-size: 1.3em;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid #c2185b;
+    outline: none;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  #passwordOverlay button {
+    padding: 10px 30px;
+    font-size: 1.2em;
+    background: #c2185b;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #passwordOverlay button:hover {
+    background: #a31544;
+  }
+  #passwordOverlay .error {
+    color: #a31544;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+
+  /* เนื้อหาเว็บหลัก ซ่อนตอนรอรหัส */
+  #mainContent {
+    display: none;
+  }
+
+  h1 {
+    font-size: 3em;
+    margin-top: 50px;
+    text-shadow: 0 0 25px rgba(255, 105, 180, 0.8);
+    animation: floatText 4s ease-in-out infinite alternate;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes floatText {
+    0% { transform: translateZ(0px) rotateY(0deg); }
+    100% { transform: translateZ(60px) rotateY(15deg); }
+  }
+
+  p {
+    font-size: 1.3em;
+    margin: 20px auto;
+    width: 80%;
+    line-height: 1.8;
+    color: #d63384;
+  }
+
+  /* แกลเลอรี่ภาพแบบ 3D เปิดทีละรูป */
+  .gallery {
+    perspective: 1200px;
+    margin: 40px auto;
+    width: 280px;
+    height: 350px;
+    position: relative;
+  }
+
+  .gallery img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.8);
+    border: 3px solid #fff;
+    position: absolute;
+    top: 0; left: 50%;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    transform: translateX(-50%) rotateY(0deg);
+  }
+
+  .gallery img.active {
+    opacity: 1;
+    position: relative;
+    transform: translateX(-50%) rotateY(0deg) scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 182, 193, 1);
+    z-index: 10;
+  }
+
+  .caption {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #c2185b;
+    min-height: 40px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px white;
+  }
+
+  .gallery-controls {
+    margin-top: 15px;
+  }
+  .gallery-controls button {
+    background: #c2185b;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    font-size: 1em;
+    transition: background 0.3s ease;
+  }
+  .gallery-controls button:hover {
+    background: #a31544;
+  }
+
+  footer {
+    font-size: 1.2em;
+    color: #c2185b;
+    padding: 30px 0;
+  }
+
+  /* กลีบกุหลาบและหัวใจปลิว */
+  .petal, .heart {
+    position: fixed;
+    top: -10vh;
+    font-size: 24px;
+    opacity: 0.8;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* กล่องเซอร์ไพรส์ */
+  .gift-box {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(145deg, #ff80bf, #ffb6c1);
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(255, 182, 193, 0.8);
+    cursor: pointer;
+    transform: rotateX(15deg) rotateY(10deg);
+    animation: bounce 3s ease-in-out infinite;
+    position: relative;
+  }
+
+  .gift-lid {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 30%;
+    background: #ff99cc;
+    border-radius: 15px 15px 0 0;
+    transition: transform 1s ease;
+  }
+
+  .gift-box.open .gift-lid {
+    transform: rotateX(130deg);
+    transform-origin: top;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0) rotateY(10deg); }
+    50% { transform: translateY(-15px) rotateY(-10deg); }
+  }
+
+  .surprise {
+    opacity: 0;
+    transition: opacity 1s ease;
+    transform: scale(0.8);
+  }
+
+  .gift-box.open + .surprise {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* พื้นหลังเคลื่อนไหวแบบ 4K */
+  @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  body {
+    background: linear-gradient(-45deg, #ffe6f2, #ffd6e7, #ffb6c1, #ffcce6);
+    background-size: 400% 400%;
+    animation: bgMove 15s ease infinite;
+  }
+</style>
+</head>
+
+ <!-- รหัสผ่านพร้อมวิดีโอ -->
+<body><div id="passwordOverlay">
+  <video autoplay="" muted="" loop="" playsinline="">
+    <source src="783719340.910607.mp4" type="video/mp4">
+    <!-- ใส่ลิงก์วิดีโอที่ต้องการ -->
+    วิดีโอไม่รองรับในเบราว์เซอร์นี้
+  </video>
+  <input id="passwordInput" type="password" placeholder="กรุณาใส่รหัสวันเกิด">
+  <button id="passwordBtn">เข้าสู่เว็บไซต์</button>
+  <div class="error" id="passwordError"></div>
+</div>
+
+<!-- เนื้อหาเว็บหลัก -->
+<div id="mainContent">
+  <h1>🎉 สุขสันต์วันเกิด หมิงๆ อายุ 20 ปี 🌹</h1>
+  <p>วันนี้เป็นวันที่พิเศษที่สุดในโลกเลยนะ เค้าอยากบอกว่า “รักหมิงๆ ที่สุดเลย” 💕  
+    ขอให้หมิงๆ สดใส น่ารัก อ่อนโยน และมีความสุขในทุกๆ วันนะ 💖
+  </p>
+
+  <!-- กล่องของขวัญเซอร์ไพรส์ -->
+  <div class="gift-box" id="gift">
+    <div class="gift-lid"></div>
+  </div>
+  <div class="surprise">
+    <h2>🌹 เปิดกล่องแล้ว! หมิงๆ คือของขวัญที่ล้ำค่าที่สุด 💝</h2>
+  </div>
+
+  
+
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>เพลงอัตโนมัติ</title>
+
+
+
+  <h1>เพลงสำหรับเธอคนสวย</h1>
+
+  <!-- เพลงที่เล่นอัตโนมัติ (เริ่มด้วย muted) -->
+  <audio id="bgm" src="t-047-rduuaihm-128-ytshorts.savetube.me.mp3" autoplay="" loop="" muted=""></audio>
+
+  <script>
+    // เมื่อหน้าเว็บโหลดเสร็จ
+    window.addEventListener('load', () => {
+      const bgm = document.getElementById('bgm');
+      bgm.play().then(() => {
+        console.log("เพลงเล่นแล้ว");
+      }).catch((error) => {
+        console.error("ไม่สามารถเล่นเพลงได้:", error);
+      });
+      
+      // ปรับเสียงหลังจากเริ่มเล่น
+      bgm.muted = false; // เปิดเสียง
+    });
+  </script>
+
+
+
+
+
+  
+  <div class="gallery" id="gallery">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_22.jpg" alt="รูป 1" class="active">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_21.jpg" alt="รูป 2">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_20.jpg" alt="รูป 3">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_19.jpg" alt="รูป 4">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_17.jpg" alt="รูป 5">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_18.jpg" alt="รูป 6">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_16.jpg" alt="รูป 7">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_15.jpg" alt="รูป 8">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_14.jpg" alt="รูป 9">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_12.jpg" alt="รูป 10">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_13.jpg" alt="รูป 11">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_11.jpg" alt="รูป 12">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_10.jpg" alt="รูป 13">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_8.jpg" alt="รูป 14">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_9.jpg" alt="รูป 15">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_7.jpg" alt="รูป 16">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_5.jpg" alt="รูป 17">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_6.jpg" alt="รูป 18">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_4.jpg" alt="รูป 19">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_3.jpg" alt="รูป 20">
+    <img src="./🌹 Happy Birthday หมิงๆ อายุ 20 ปี 💖_files/LINE_ALBUM_21168_251102_2.jpg" alt="รูป 21">
+    <!-- ใส่รูปเพิ่มเติมตามต้องการ -->
+  </div>
+  <div class="caption" id="caption">รูปที่ 1: รักหมิงๆ ที่สุดเลยนะ 💕</div>
+  <div class="gallery-controls">
+    <button id="prevBtn">⏮️ ก่อนหน้า</button>
+    <button id="nextBtn">ถัดไป ⏭️</button>
+  </div>
+
+  <footer>💞 จากใจคนที่รักหมิงๆ ที่สุดในจักรวาลรักนะคะจุ๊ปๆ 💞</footer>
+</div>
+
+<script>
+  // กำหนดรหัสผ่าน
+  const correctPassword = "2112568";
+  const passwordOverlay = document.getElementById('passwordOverlay');
+  const passwordInput = document.getElementById('passwordInput');
+  const passwordBtn = document.getElementById('passwordBtn');
+  const passwordError = document.getElementById('passwordError');
+  const mainContent = document.getElementById('mainContent');
+  const bgm = document.getElementById('bgm');
+
+  passwordBtn.addEventListener('click', () => {
+    if (passwordInput.value === correctPassword) {
+      passwordOverlay.style.display = 'none';
+      mainContent.style.display = 'block';
+      bgm.play().catch(() => {});
+    } else {
+      passwordError.textContent = 'รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง';
+    }
+  });
+
+  passwordInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      passwordBtn.click();
+    }
+  });
+
+  // กลีบกุหลาบและหัวใจปลิว
+  function createPetal() {
+    const petal = document.createElement('div');
+    petal.classList.add(Math.random() > 0.5 ? 'petal' : 'heart');
+    petal.textContent = Math.random() > 0.5 ? '🌹' : '💖';
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.fontSize = Math.random() * 25 + 20 + 'px';
+    petal.style.animationDuration = Math.random() * 6 + 5 + 's';
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 10000);
+  }
+  setInterval(createPetal, 300);
+
+  // กล่องของขวัญ
+  document.getElementById('gift').addEventListener('click', () => {
+    document.getElementById('gift').classList.toggle('open');
+  });
+
+  // แกลเลอรี่ภาพเปิดทีละรูป พร้อมข้อความอวยพร
+  const images = document.querySelectorAll('.gallery img');
+  const caption = document.getElementById('caption');
+  let currentIndex = 0;
+
+  // ข้อความอวยพรสำหรับแต่ละรูป
+  const captionsText = [
+    "รูปที่ 1: รักหมิงๆ ที่สุดเลยนะ 💕",
+    "รูปที่ 2: หมิงๆ น่ารักมาก! 🌸",
+    "รูปที่ 3: ขอให้มีแต่ความสุขนะ 🎉",
+    "รูปที่ 4: อยู่ด้วยกันแบบนี้ตลอดไปนะ 💖",
+    "รูปที่ 5: วันเกิดปีนี้ขอให้ทุกความฝันของเธอเป็นจริง 💖",
+    "รูปที่ 6: ขอให้ปีนี้เป็นปีที่เต็มไปด้วยความสุขและรอยยิ้มของเธอ 💖",
+    "รูปที่ 7: สุขสันต์วันเกิดคนพิเศษของฉัน รักเธอที่สุดนะ 💖",
+    "รูปที่ 8: ธอคือความสุขของฉัน สุขสันต์วันเกิดนะที่รัก💖",
+    "รูปที่ 9: ขอให้ปีนี้เต็มไปด้วยความรัก ความสำเร็จ และความสุข 💖",
+    "รูปที่ 10: รักเธอมากขึ้นทุกวัน สุขสันต์วันเกิดนะ 💖",
+    "รูปที่ 11: สุขสันต์วันเกิดแฟนสุดที่รักของฉัน 💖",
+    "รูปที่ 12: ขอให้ทุกวันของเธอเต็มไปด้วยความสุขและความหวาน 💖",
+    "รูปที่ 13: ขอให้ปีนี้เป็นปีที่ดีที่สุดของเธอ 💖",
+    "รูปที่ 14: สุขสันต์วันเกิดนะที่รัก ขอให้รักของเรายิ่งโตขึ้นทุกวัน 💖",
+    "รูปที่ 15: ขอให้เธอได้พบเจอแต่สิ่งดี ๆ และคนดี ๆ รอบตัว 💖",
+    "รูปที่ 16: รอยยิ้มของเธอคือของขวัญที่ดีที่สุดสำหรับฉัน 💖",
+    "รูปที่ 17: วันเกิดปีนี้ ขอให้ความรักและความสุขอยู่กับเธอเสมอ 💖",
+    "รูปที่ 19: ขอบคุณที่อยู่เคียงข้างฉัน สุขสันต์วันเกิดนะ 💖",
+    "รูปที่ 20: สุขสันต์วันเกิดคนที่ทำให้หัวใจฉันเต้นแรงทุกวัน 💖",
+    "รูปที่ 21: รักเธอมาก ๆ และขอให้ปีนี้เป็นปีแห่งความสุขของเธอ 💖",
+    // เพิ่มข้อความอวยพรให้ครบตามจำนวนรูปได้
+  ];
+
+  function showImage(index) {
+    images.forEach((img, i) => {
+      img.classList.remove('active');
+      if (i === index) img.classList.add('active');
+    });
+    caption.textContent = captionsText[index] || "";
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    currentIndex--;
+    if (currentIndex < 0) currentIndex = images.length - 1;
+    showImage(currentIndex);
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    currentIndex++;
+    if (currentIndex >= images.length) currentIndex = 0;
+    showImage(currentIndex);
+  });
+
+  // เริ่มแสดงรูปแรก
+  showImage(currentIndex);
+
+  // เพลงอัตโนมัติ รองรับกรณีไม่เล่นอัตโนมัติ (ถ้าโหลดสำเร็จ)
+  window.addEventListener('load', () => {
+    bgm.play().catch(() => {});
+  });
+</script>
+
+
+
+<div class="petal" style="left: 84.8302vw; font-size: 21.3241px; animation-duration: 6.41918s;">🌹</div><div class="heart" style="left: 60.1119vw; font-size: 39.8638px; animation-duration: 5.84693s;">💖</div><div class="heart" style="left: 10.2656vw; font-size: 21.9419px; animation-duration: 9.20442s;">🌹</div><div class="heart" style="left: 61.1029vw; font-size: 27.2536px; animation-duration: 6.23783s;">🌹</div><div class="petal" style="left: 79.5987vw; font-size: 22.9371px; animation-duration: 5.12348s;">💖</div><div class="petal" style="left: 48.8109vw; font-size: 24.471px; animation-duration: 5.18572s;">💖</div><div class="petal" style="left: 55.9435vw; font-size: 37.1573px; animation-duration: 6.54111s;">🌹</div><div class="petal" style="left: 14.4365vw; font-size: 37.7927px; animation-duration: 5.14702s;">🌹</div><div class="petal" style="left: 57.5386vw; font-size: 34.9637px; animation-duration: 6.89648s;">🌹</div><div class="heart" style="left: 56.5295vw; font-size: 35.3212px; animation-duration: 9.81433s;">🌹</div><div class="petal" style="left: 61.2669vw; font-size: 22.6555px; animation-duration: 10.4427s;">🌹</div><div class="petal" style="left: 89.7452vw; font-size: 43.0734px; animation-duration: 9.15133s;">💖</div><div class="heart" style="left: 65.6565vw; font-size: 28.8176px; animation-duration: 7.85154s;">💖</div><div class="petal" style="left: 19.9423vw; font-size: 36.7137px; animation-duration: 10.3202s;">🌹</div><div class="heart" style="left: 13.3214vw; font-size: 40.5096px; animation-duration: 9.56314s;">💖</div><div class="petal" style="left: 27.7277vw; font-size: 42.2782px; animation-duration: 10.7291s;">💖</div><div class="petal" style="left: 41.5141vw; font-size: 41.7473px; animation-duration: 10.5106s;">🌹</div><div class="petal" style="left: 58.0945vw; font-size: 35.553px; animation-duration: 9.18366s;">💖</div><div class="petal" style="left: 48.1303vw; font-size: 43.4982px; animation-duration: 6.93045s;">🌹</div><div class="petal" style="left: 92.9083vw; font-size: 31.0647px; animation-duration: 9.19515s;">🌹</div><div class="petal" style="left: 32.5483vw; font-size: 32.2361px; animation-duration: 10.1557s;">💖</div><div class="heart" style="left: 67.9459vw; font-size: 21.4449px; animation-duration: 5.47242s;">💖</div><div class="petal" style="left: 35.4643vw; font-size: 21.0603px; animation-duration: 7.252s;">🌹</div><div class="heart" style="left: 32.9478vw; font-size: 36.3744px; animation-duration: 10.1338s;">🌹</div><div class="petal" style="left: 68.6604vw; font-size: 38.337px; animation-duration: 9.9901s;">🌹</div><div class="heart" style="left: 63.709vw; font-size: 27.1551px; animation-duration: 10.4727s;">💖</div><div class="petal" style="left: 50.2122vw; font-size: 22.1094px; animation-duration: 5.00502s;">💖</div><div class="petal" style="left: 73.465vw; font-size: 33.9761px; animation-duration: 5.8625s;">🌹</div><div class="heart" style="left: 22.0114vw; font-size: 33.4312px; animation-duration: 5.52803s;">🌹</div><div class="heart" style="left: 76.5722vw; font-size: 25.2723px; animation-duration: 8.65975s;">💖</div><div class="petal" style="left: 72.5215vw; font-size: 33.7401px; animation-duration: 6.3019s;">💖</div><div class="heart" style="left: 13.7292vw; font-size: 24.6983px; animation-duration: 8.77615s;">🌹</div><div class="heart" style="left: 88.4291vw; font-size: 20.2281px; animation-duration: 6.90709s;">💖</div><div class="petal" style="left: 72.4315vw; font-size: 43.8724px; animation-duration: 6.44464s;">🌹</div></body></html>
+
